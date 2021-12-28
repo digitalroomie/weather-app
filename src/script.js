@@ -26,7 +26,7 @@ function showCurrentLocationInfo(response) {
 
   // Display wind speed
   document.querySelector("#description").innerHTML =
-    response.data.weather[0].description;
+    response.data.weather[0].main;
 }
 
 function showCurrentLocation(position) {
