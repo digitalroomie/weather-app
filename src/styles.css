@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800;900&family=Work+Sans:wght@400;500;600&display=swap");
+
+:root {
+  --text-color: #222831;
+  --link-color: #f28500;
+  --link-hover-color: #ffd8a5;
+}
+
+body {
+  background: linear-gradient(
+    180deg,
+    rgb(217, 231, 250) 23%,
+    rgb(253, 247, 238) 94%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--text-color);
+  font-family: "Work Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  height: 100vh;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: all 200ms ease-in-out;
+}
+a:hover,
+a:active {
+  color: var(--link-hover-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+}
+
+h1 {
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: capitalize;
+}
+h2 {
+  font-size: 60px;
+}
+h6 {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
+.app-frame {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 40px 5px rgba(105, 105, 105, 0.1);
+  margin: 0 auto;
+  max-width: 750px;
+}
+.app-frame-inner {
+  padding: 35px 50px;
+}
+
+form .input-search {
+  width: 85%;
+  border: 0 none;
+  background-color: #f7f4fc;
+  padding: 15px 35px;
+}
+
+form .btn-search {
+  background-color: var(--link-color);
+  border: 0 none;
+  border-radius: 0;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  transition: all 200ms ease-in-out;
+  width: 15%;
+}
+form .btn-search:hover,
+form .btn-search:active {
+  background-color: var(--link-hover-color);
+  color: #222831;
+}
+
+#current-location {
+  background-color: #f8e2fa;
+  border: 0 none;
+  font-size: 12px;
+  height: 54px;
+  line-height: 1.2;
+  padding: 20px;
+  transition: all 200ms ease-in-out;
+}
+#current-location:hover,
+#current-location:active {
+  background-color: #fef7ff;
+}
+#current-location .pointer {
+  margin-right: 8px;
+}
+
+.day-time {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  padding: 17px;
+  text-align: center;
+  width: 100%;
+}
+
+.current-weather > div {
+  padding-bottom: 15px;
+}
+.current-weather p {
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.current-weather #description {
+  text-transform: capitalize;
+}
+.current-weather-icon {
+  text-align: right;
+}
+.current-weather-icon img {
+  animation-iteration-count: infinite;
+  display: block;
+  margin-bottom: 5px;
+  width: 100px;
+}
+.current-weather-icon .floating {
+  animation-duration: 3s;
+  animation-name: floating;
+  animation-timing-function: ease-in-out;
+}
+.current-weather-icon .rotating {
+  animation-duration: 50s;
+  animation-name: rotate;
+  animation-timing-function: linear;
+}
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(10px, 0);
+  }
+  100% {
+    transform: translate(-0px, 0);
+  }
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pipe {
+  font-size: 30px;
+  font-weight: 400;
+}
+.convert-fahrenheit {
+  font-size: 30px;
+  position: relative;
+  top: -20px;
+}
+.convert-fahrenheit span {
+  color: var(--link-color);
+  cursor: pointer;
+  font-weight: 400;
+  transition: all 200ms ease-in-out;
+}
+.convert-fahrenheit .active {
+  color: var(--text-color);
+  cursor: default;
+  font-weight: 800;
+  transition: none;
+}
+.convert-fahrenheit .active:hover,
+.convert-fahrenheit .pipe {
+  color: var(--text-color);
+}
+
+.forecast-5-days {
+  border: 1px solid rgba(105, 105, 105, 0.1);
+}
+.forecast-5-days .col {
+  padding: 20px;
+  text-align: center;
+}
+.forecast-5-days p {
+  margin-bottom: 0;
+}
+.forecast-5-days .icon {
+  margin: 10px 0 15px;
+  max-width: 45px;
+}
+.forecast-5-days strong {
+  font-weight: 600;
+}
+
+.footer {
+  font-size: 10px;
+  padding-bottom: 0 !important;
+}
+
+@media (max-width: 575.98px) {
+  h2 {
+    font-size: 48px;
+  }
+  .convert-fahrenheit {
+    top: -10px;
+  }
+  .current-weather-icon {
+    padding-top: 20px;
+    text-align: left;
+  }
+  .current-weather-icon img {
+    width: 80px;
+  }
+}
