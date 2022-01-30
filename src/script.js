@@ -61,37 +61,22 @@ function showCurrentLocationInfo(response) {
     response.data.dt * 1000
   );
 
-  let weatherDesc = response.data.weather[0].main;
+  // Display weather condition icons
   let weatherIcon = document.querySelector("#weather-icon");
 
-  if (weatherDesc == "Thunderstorm") {
-    weatherIcon.setAttribute("src", `images/cloud-lightning.png`);
-  } else if (weatherDesc == "Drizzle" || weatherDesc == "Rain") {
-    weatherIcon.setAttribute("src", `images/cloud-rain.png`);
-  } else if (weatherDesc == "Snow") {
-    weatherIcon.setAttribute("src", `images/snowflake.png`);
-  } else if (weatherDesc == "Clear") {
-    weatherIcon.setAttribute("src", `images/sun.png`);
-  } else if (weatherDesc == "Clouds") {
-    weatherIcon.setAttribute("src", `images/clouds.png`);
-  } else if (weatherDesc == "Tornado") {
-    weatherIcon.setAttribute("src", `images/tornado.png`);
-  } else if (
-    weatherDesc == "Mist" ||
-    weatherDesc == "Haze" ||
-    weatherDesc == "Dust" ||
-    weatherDesc == "Fog"
-  ) {
-    weatherIcon.setAttribute("src", `images/cloud-rain.png`);
-  }
+  weatherIcon.setAttribute(
+    "src",
+    `images/${response.data.weather[0].icon}.png`
+  );
+  weatherIcon.setAttribute("alt", `${response.data.weather[0].main}`);
 
-  // Display weather condition icons
-  /*document
-    .querySelector("#weather-icon")
-    .setAttribute(
-      "src",
-      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-    );*/
+  if (
+    response.data.weather[0].icon == "01d" ||
+    response.data.weather[0].icon == "13d" ||
+    response.data.weather[0].icon == "13n"
+  ) {
+    weatherIcon.setAttribute("class", `rotating`);
+  }
 }
 
 function showCurrentLocation(position) {
