@@ -7,7 +7,7 @@
 }
 
 html {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -23,7 +23,7 @@ body {
   font-family: "Work Sans", sans-serif;
   font-size: 16px;
   font-weight: 300;
-  height: 100%;
+  min-height: 100%;
   margin: 0;
 }
 
@@ -65,7 +65,7 @@ h6 {
 .app-frame {
   background-color: #ffffff;
   box-shadow: 0px 0px 40px 5px rgba(105, 105, 105, 0.1);
-  margin: 0 auto;
+  margin: 3em auto;
   max-width: 750px;
 }
 .app-frame-inner {
