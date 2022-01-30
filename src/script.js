@@ -18,7 +18,8 @@ function displayDateTime(timestamp) {
 }
 
 function showCurrentLocationInfo(response) {
-  celsiusTemperature = response.data.main.temp;
+  celsiusTemp = response.data.main.temp;
+  feelsLikeCelsiusTemp = response.data.main.feels_like;
 
   // Display city name
   document.querySelector(
@@ -26,13 +27,11 @@ function showCurrentLocationInfo(response) {
   ).innerHTML = `${response.data.name}, ${response.data.sys.country}`;
 
   // Display temperature
-  document.querySelector("#current-temp").innerHTML =
-    Math.round(celsiusTemperature);
+  document.querySelector("#current-temp").innerHTML = Math.round(celsiusTemp);
 
   // Display 'Feels like' temperature
-  document.querySelector("#feels-like").innerHTML = Math.round(
-    response.data.main.feels_like
-  );
+  document.querySelector("#feels-like").innerHTML =
+    Math.round(feelsLikeCelsiusTemp);
 
   // Display humidity %
   document.querySelector("#humidity").innerHTML = Math.round(
@@ -110,20 +109,17 @@ function temperatureConversion(event) {
   let feelsLikeText = document.querySelector("#feels-like");
 
   if (event.target.id === "fahrenheit-link") {
-    temperatureHeading.innerHTML = Math.round(
-      temperatureHeading.innerHTML * 1.8 + 32
-    );
-    feelsLikeText.innerHTML = Math.round(feelsLikeText.innerHTML * 1.8 + 32);
+    temperatureHeading.innerHTML = Math.round(celsiusTemp * 1.8 + 32);
+    feelsLikeText.innerHTML = Math.round(feelsLikeCelsiusTemp * 1.8 + 32);
   }
   if (event.target.id === "celsius-link") {
-    temperatureHeading.innerHTML = Math.round(
-      (temperatureHeading.innerHTML - 32) * 0.55
-    );
-    feelsLikeText.innerHTML = Math.round((feelsLikeText.innerHTML - 32) * 0.55);
+    temperatureHeading.innerHTML = Math.round(celsiusTemp);
+    feelsLikeText.innerHTML = Math.round(feelsLikeCelsiusTemp);
   }
 }
 
-let celsiusTemperature = null;
+let celsiusTemp = null;
+let feelsLikeCelsiusTemp = null;
 
 // City Search Form
 let citySearchForm = document.querySelector("#city-search");
