@@ -58,13 +58,13 @@ function displayDateTime() {
   let now = new Date();
 
   let days = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
   ];
   let currentDay = days[now.getDay()];
   let currentHour = now.getHours();
