@@ -6,19 +6,25 @@
   --link-hover-color: #ffd8a5;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background: linear-gradient(
     180deg,
     rgb(217, 231, 250) 23%,
     rgb(253, 247, 238) 94%
   );
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   color: var(--text-color);
   font-family: "Work Sans", sans-serif;
   font-size: 16px;
   font-weight: 300;
-  height: 100vh;
+  height: 100%;
+  margin: 0;
 }
 
 a {
