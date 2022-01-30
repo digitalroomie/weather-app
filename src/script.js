@@ -1,3 +1,22 @@
+function displayDateTime(timestamp) {
+  let date = new Date(timestamp);
+
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[date.getDay()];
+
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `Last updated: ${day} ${hours}:${minutes}`;
+}
+
 function showCurrentLocationInfo(response) {
   // Display city name
   document.querySelector(
@@ -27,6 +46,11 @@ function showCurrentLocationInfo(response) {
   // Display wind speed
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
+
+  // Display last updated day and time
+  document.querySelector("#current-date-time").innerHTML = displayDateTime(
+    response.data.dt * 1000
+  );
 }
 
 function showCurrentLocation(position) {
@@ -52,26 +76,6 @@ function displayCityWeather(city) {
   let apiUrl = `${apiEndpoint}${city}&appid=${apiKey}&units=${unit}`;
 
   axios.get(apiUrl).then(showCurrentLocationInfo);
-}
-
-function displayDateTime() {
-  let now = new Date();
-
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let currentDay = days[now.getDay()];
-  let currentHour = now.getHours();
-  let currentMinutes = now.getMinutes();
-
-  let currentDateTime = document.querySelector("#current-date-time");
-  currentDateTime.innerHTML = `${currentDay} ${currentHour}:${currentMinutes}`;
 }
 
 function citySearch(event) {
@@ -125,7 +129,7 @@ let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", detectLocation);
 
 // Run date formatting
-displayDateTime();
+//displayDateTime();
 // Run auto location detection
 detectLocation();
 // Display a default city
