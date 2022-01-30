@@ -18,15 +18,16 @@ function displayDateTime(timestamp) {
 }
 
 function showCurrentLocationInfo(response) {
+  celsiusTemperature = response.data.main.temp;
+
   // Display city name
   document.querySelector(
     "h1"
   ).innerHTML = `${response.data.name}, ${response.data.sys.country}`;
 
   // Display temperature
-  document.querySelector("#current-temp").innerHTML = Math.round(
-    response.data.main.temp
-  );
+  document.querySelector("#current-temp").innerHTML =
+    Math.round(celsiusTemperature);
 
   // Display 'Feels like' temperature
   document.querySelector("#feels-like").innerHTML = Math.round(
@@ -51,6 +52,14 @@ function showCurrentLocationInfo(response) {
   document.querySelector("#current-date-time").innerHTML = displayDateTime(
     response.data.dt * 1000
   );
+
+  // Display weather condition icons
+  document
+    .querySelector("#weather-icon")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
 }
 
 function showCurrentLocation(position) {
@@ -114,6 +123,8 @@ function temperatureConversion(event) {
   }
 }
 
+let celsiusTemperature = null;
+
 // City Search Form
 let citySearchForm = document.querySelector("#city-search");
 citySearchForm.addEventListener("submit", citySearch);
@@ -128,8 +139,6 @@ fahrenheitLink.addEventListener("click", temperatureConversion);
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", detectLocation);
 
-// Run date formatting
-//displayDateTime();
 // Run auto location detection
 detectLocation();
 // Display a default city
