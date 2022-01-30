@@ -9,6 +9,15 @@ function displayDateTime(timestamp) {
     hours = `0${hours}`;
   }
 
+  if (hours > 19 || hours < 6)
+    // If time is after 7PM or before 6AM, set night background
+    document.body.className = "night";
+  else if (hours > 16 && hours < 19)
+    // If time is between 4PM and 7PM, set sunset background
+    document.body.className = "sunset";
+  // Else set day background
+  else document.body.className = "day";
+
   let minutes = date.getMinutes();
   if (minutes < 10) {
     minutes = `0${minutes}`;

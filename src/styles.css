@@ -26,6 +26,27 @@ body {
   min-height: 100%;
   margin: 0;
 }
+.day {
+  background: linear-gradient(
+    180deg,
+    rgb(217, 231, 250) 23%,
+    rgb(253, 247, 238) 94%
+  );
+}
+.night {
+  background: linear-gradient(
+    180deg,
+    rgb(15, 8, 68) 20%,
+    rgb(253, 247, 238) 140%
+  );
+}
+.sunset {
+  background: linear-gradient(
+    180deg,
+    rgb(253, 247, 238) 23%,
+    rgb(67, 82, 186) 94%
+  );
+}
 
 a {
   color: var(--link-color);
