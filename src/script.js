@@ -26,18 +26,38 @@ function displayDateTime(timestamp) {
   return `Last updated: ${day} ${hours}:${minutes}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
-  let days = ["Wed", "Fri", "Sat"];
-  days.forEach(function (day) {
-    let forecastHTML = `<div class="row g-0">`;
-    forecastHTML =
-      forecastHTML +
-      `<div class="col"><h6>${day}</h6><img src="images/01d.png" alt="Sun" class="icon" /><p><strong>31°</strong> 22°</p></div>`;
-    forecastHTML = forecastHTML + `</div>`;
-    forecastElement.innerHTML = forecastHTML;
+  let forecastHTML = `<div class="row g-0">`;
+
+  forecast.forEach(function (forecastDay, index) {
+    let maxTemp = Math.round(forecastDay.temp.max);
+    let minTemp = Math.round(forecastDay.temp.min);
+
+    if (index < 5) {
+      let dayName = "";
+      if (index == 0) {
+        dayName = "Tomorrow";
+      } else {
+        dayName = formatDay(forecastDay.dt);
+      }
+      forecastHTML =
+        forecastHTML +
+        `<div class="col"><h6>${dayName}</h6><img src="images/${forecastDay.weather[0].icon}.png" alt="${forecastDay.weather[0].description}" class="icon" /><p><strong>${maxTemp}°</strong> ${minTemp}°</p></div>`;
+    }
   });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coordinates) {
