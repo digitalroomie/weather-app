@@ -26,7 +26,8 @@ function displayDateTime(timestamp) {
   return `Last updated: ${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   let days = ["Wed", "Fri", "Sat"];
   days.forEach(function (day) {
@@ -37,6 +38,14 @@ function displayForecast() {
     forecastHTML = forecastHTML + `</div>`;
     forecastElement.innerHTML = forecastHTML;
   });
+}
+
+function getForecast(coordinates) {
+  let unit = "metric";
+  let apiKey = `365522459be6f238831ff0a5021b2f77`;
+  let apiEndpoint = `https://api.openweathermap.org/data/2.5/onecall?`;
+  let apiUrl = `${apiEndpoint}lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function showCurrentLocationInfo(response) {
@@ -90,6 +99,8 @@ function showCurrentLocationInfo(response) {
   ) {
     weatherIcon.setAttribute("class", `rotating`);
   }
+
+  getForecast(response.data.coord);
 }
 
 function showCurrentLocation(position) {
@@ -165,8 +176,6 @@ fahrenheitLink.addEventListener("click", temperatureConversion);
 // Display temperature of current location on button click
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", detectLocation);
-
-displayForecast();
 
 // Run auto location detection
 detectLocation();
