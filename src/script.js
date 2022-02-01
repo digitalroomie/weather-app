@@ -26,6 +26,19 @@ function displayDateTime(timestamp) {
   return `Last updated: ${day} ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Wed", "Fri", "Sat"];
+  days.forEach(function (day) {
+    let forecastHTML = `<div class="row g-0">`;
+    forecastHTML =
+      forecastHTML +
+      `<div class="col"><h6>${day}</h6><img src="images/01d.png" alt="Sun" class="icon" /><p><strong>31°</strong> 22°</p></div>`;
+    forecastHTML = forecastHTML + `</div>`;
+    forecastElement.innerHTML = forecastHTML;
+  });
+}
+
 function showCurrentLocationInfo(response) {
   celsiusTemp = response.data.main.temp;
   feelsLikeCelsiusTemp = response.data.main.feels_like;
@@ -152,6 +165,8 @@ fahrenheitLink.addEventListener("click", temperatureConversion);
 // Display temperature of current location on button click
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", detectLocation);
+
+displayForecast();
 
 // Run auto location detection
 detectLocation();
