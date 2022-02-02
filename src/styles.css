@@ -223,7 +223,7 @@ form .btn-search:active {
 .forecast-5-days {
   border: 1px solid rgba(105, 105, 105, 0.1);
 }
-.forecast-5-days .col {
+.forecast-5-days .col-6 {
   padding: 20px;
   text-align: center;
 }

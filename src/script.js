@@ -48,7 +48,7 @@ function displayForecast(response) {
     let maxTemp = Math.round(forecastDay.temp.max);
     let minTemp = Math.round(forecastDay.temp.min);
 
-    if (index < 5) {
+    if (index < 6) {
       let dayName = "";
       if (index == 0) {
         dayName = "Tomorrow";
@@ -57,7 +57,7 @@ function displayForecast(response) {
       }
       forecastHTML =
         forecastHTML +
-        `<div class="col"><h6>${dayName}</h6><img src="images/${forecastDay.weather[0].icon}.png" alt="${forecastDay.weather[0].description}" class="icon" /><p><strong>${maxTemp}°</strong> ${minTemp}°</p></div>`;
+        `<div class="col-6 col-md-2"><h6>${dayName}</h6><img src="images/${forecastDay.weather[0].icon}.png" alt="${forecastDay.weather[0].description}" class="icon" /><p><strong>${maxTemp}°</strong> ${minTemp}°</p></div>`;
     }
   });
   forecastHTML = forecastHTML + `</div>`;
