@@ -1,3 +1,5 @@
+// Display day and time of weather data calculation
+
 function displayDateTime(timestamp) {
   let date = new Date(timestamp);
 
@@ -29,10 +31,12 @@ function displayDateTime(timestamp) {
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   return days[day];
 }
+
+// Display 5 day forecast
 
 function displayForecast(response) {
   let forecast = response.data.daily;
@@ -60,6 +64,8 @@ function displayForecast(response) {
   forecastElement.innerHTML = forecastHTML;
 }
 
+// Use axios API to pull in forecast data
+
 function getForecast(coordinates) {
   let unit = "metric";
   let apiKey = `365522459be6f238831ff0a5021b2f77`;
@@ -67,6 +73,8 @@ function getForecast(coordinates) {
   let apiUrl = `${apiEndpoint}lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(displayForecast);
 }
+
+// Display weather data for current location
 
 function showCurrentLocationInfo(response) {
   celsiusTemp = response.data.main.temp;
@@ -135,9 +143,13 @@ function showCurrentLocation(position) {
   axios.get(apiUrl).then(showCurrentLocationInfo);
 }
 
+// Automatically detect current location
+
 function detectLocation() {
   navigator.geolocation.getCurrentPosition(showCurrentLocation);
 }
+
+// Use axios API to display weather
 
 function displayCityWeather(city) {
   let apiKey = `365522459be6f238831ff0a5021b2f77`;
@@ -147,6 +159,8 @@ function displayCityWeather(city) {
 
   axios.get(apiUrl).then(showCurrentLocationInfo);
 }
+
+// City search field calls function to display weather data
 
 function citySearch(event) {
   event.preventDefault();
