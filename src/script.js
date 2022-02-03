@@ -126,6 +126,8 @@ function showCurrentLocationInfo(response) {
     response.data.weather[0].icon == "13n"
   ) {
     weatherIcon.setAttribute("class", `rotating`);
+  } else {
+    weatherIcon.setAttribute("class", `floating`);
   }
 
   getForecast(response.data.coord);
